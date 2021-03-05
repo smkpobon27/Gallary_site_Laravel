@@ -9,8 +9,12 @@ class Image extends Model
 {
     use HasFactory;
 
-    public function hasCategory()
+    public function category()
     {
-        return $this->hasOne('App\Models\Category', 'id');
+        return $this->belongsTo('App\Models\Category');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Profile;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
@@ -21,10 +22,11 @@ class UserController extends Controller
         return view('home');
     }
     //show the profile of a speficif user by clicking on image link
-    public function portfolioDetails()
+    public function portfolioDetails($id)
     {
-
-        return view('user.portfolio-details');
+        $user = User::find($id);
+        $profile = Profile::where('user_id', $id)->first();
+        return view('user.portfolio-details', compact('user', 'profile'));
     }
     //create user profile
     public function profileCreate()

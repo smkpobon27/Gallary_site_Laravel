@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'UserController@index');
 
-Route::get('/user/portfolio-details', 'UserController@portfolioDetails');
+Route::get('/image/user/portfolio-details/{id}', 'UserController@portfolioDetails');
 Route::get('/user/profile', 'UserController@profileShow')->name('profile-show');
 Route::get('/user/profile/create', 'UserController@profileCreate');
 Route::post('/user/store/profile', 'UserController@profileStore')->name('profile-store');

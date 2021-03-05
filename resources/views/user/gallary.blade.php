@@ -16,9 +16,9 @@
                     <div class="col-lg-9 d-flex justify-content-start">
                         <ul id="portfolio-flters">
                             <li data-filter="*" class="filter-active">All</li>
-                            @foreach ($images as $image)
-                                <li data-filter=".filter-{{ $image->hasCategory->name }}">
-                                    {{ ucfirst($image->hasCategory->name) }}</li>
+                            @foreach ($categories as $category)
+                                <li data-filter=".filter-{{ $category->name }}">
+                                    {{ ucfirst($category->name) }}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -32,19 +32,20 @@
 
                 <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
                     @foreach ($images as $image)
-                        <div class="col-lg-4 col-md-6 portfolio-item filter-{{ $image->hasCategory->name }}">
+                        <div
+                            class="col-lg-4 col-md-6 portfolio-item filter-{{ $image->category->name }} filter-{{ $image->privacy == 1 ? 'public' : 'private' }}">
                             <div class="portfolio-wrap">
                                 <img src="{{ asset(Storage::disk('local')->url($image->image_url)) }}" class="img-fluid"
                                     alt="">
                                 <div class="portfolio-info">
                                     <h4>{{ $image->title }}</h4>
-                                    <p>{{ ucfirst($image->hasCategory->name) }}</p>
+                                    <p>{{ ucfirst($image->category->name) }}</p>
                                     <div class="portfolio-links">
                                         <a href="{{ asset(Storage::disk('local')->url($image->image_url)) }}"
                                             data-gall="portfolioGallery" class="venobox" title="{{ $image->title }}"><i
                                                 class="bx bx-plus"></i></a>
-                                        <a href="user/portfolio-details" title="Click for Uploader details info"><i
-                                                class="bx bx-link"></i>Posted By</a>
+                                        <a href="user/portfolio-details/{{ $image->user->id }}"
+                                            title="Click for Uploader details info"><i class="bx bx-link"></i>Posted By</a>
                                     </div>
                                 </div>
                             </div>
