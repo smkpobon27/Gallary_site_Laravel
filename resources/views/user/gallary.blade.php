@@ -36,7 +36,7 @@
                             class="col-lg-4 col-md-6 portfolio-item filter-{{ $image->category->name }} filter-{{ $image->privacy == 1 ? 'public' : 'private' }}">
                             <div class="portfolio-wrap">
                                 <img src="{{ asset(Storage::disk('local')->url($image->image_url)) }}" class="img-fluid"
-                                    alt="">
+                                    alt="" width="300" height="400" />
                                 <div class="portfolio-info">
                                     <h4>{{ $image->title }}</h4>
                                     <p>{{ ucfirst($image->category->name) }}</p>
